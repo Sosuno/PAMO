@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">BottomNav</string>
+    <string name="title_home">Welcome</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="enter_height">Enter Height</string>
+    <string name="enter_weight">Enter Weight</string>
+    <string name="category">Category</string>
+    <string name="bmi">BMI</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="Miffin">Miffin</string>
+    <string name="age">Age</string>
+    <string name="pick_gender">Choose your sex</string>
+    <string name="calories">Calories</string>
+    <string name="cat0">severely underweight</string>
+    <string name="cat1">severely underweight</string>
+    <string name="cat2">underweight</string>
+    <string name="cat3">healthy weight</string>
+    <string name="cat4">overweight</string>
+    <string name="cat5">moderately obese</string>
+    <string name="cat6">severely obese</string>
+    <string name="cat7">very severely obese</string>
+</resources>

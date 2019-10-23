@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BMIProject</string>
+    <string name="enter_height">Enter Height</string>
+    <string name="enter_weight">Enter Weight</string>
+    <string name="tip">BMI</string>
+    <string name="total">Category</string>
+    <string name="cat0">severely underweight</string>
+    <string name="cat1">severely underweight</string>
+    <string name="cat2">underweight</string>
+    <string name="cat3">healthy weight</string>
+    <string name="cat4">overweight</string>
+    <string name="cat5">moderately obese</string>
+    <string name="cat6">severely obese</string>
+    <string name="cat7">very severely obese</string>
+</resources>

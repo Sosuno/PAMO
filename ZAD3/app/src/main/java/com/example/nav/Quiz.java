@@ -48,7 +48,6 @@ public class Quiz extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("tu Karol xD");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         fileNameList = new ArrayList<>();

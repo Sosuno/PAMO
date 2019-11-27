@@ -11,6 +11,8 @@ import android.text.Editable;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout bmi;
     private ConstraintLayout Mifflin;
     private ConstraintLayout welcome;
+    private ConstraintLayout stats;
     private RadioButton rb1;
     private RadioButton rb2;
     private ImageView Img;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText heightEditMiffin;
     private EditText weightEditMiffin;
     private EditText Age;
+    private WebView webView;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -59,21 +63,30 @@ public class MainActivity extends AppCompatActivity {
                     welcome.setVisibility(View.VISIBLE);
                     bmi.setVisibility(View.INVISIBLE);
                     Mifflin.setVisibility(View.INVISIBLE);
+                    stats.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_bmi:
                     mTextMessage.setText(R.string.bmi);
                     welcome.setVisibility(View.INVISIBLE);
                     bmi.setVisibility(View.VISIBLE);
+                    stats.setVisibility(View.INVISIBLE);
                     Mifflin.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_miffin:
                     mTextMessage.setText(R.string.Miffin);
+                    stats.setVisibility(View.INVISIBLE);
                     welcome.setVisibility(View.INVISIBLE);
                     bmi.setVisibility(View.INVISIBLE);
                     Mifflin.setVisibility(View.VISIBLE);
                     return true;
+                case R.id.navigation_stats:
+                    welcome.setVisibility(View.INVISIBLE);
+                    bmi.setVisibility(View.INVISIBLE);
+                    Mifflin.setVisibility(View.INVISIBLE);
+                    stats.setVisibility(View.VISIBLE);
+                    draw_chart();
+                    return true;
                 case R.id.navigation_quiz:
-                    setContentView(R.layout.activity_quiz);
                     Intent a = new Intent(MainActivity.this,Quiz.class);
                     startActivity(a);
                     return true;
@@ -99,9 +112,11 @@ public class MainActivity extends AppCompatActivity {
         welcome = (ConstraintLayout) findViewById(R.id.welcome);
         bmi = (ConstraintLayout) findViewById(R.id.bmi);
         Mifflin = (ConstraintLayout) findViewById(R.id.Mifflin);
+        stats = (ConstraintLayout) findViewById(R.id.stats);
         welcome.setVisibility(View.VISIBLE);
         bmi.setVisibility(View.INVISIBLE);
         Mifflin.setVisibility(View.INVISIBLE);
+        stats.setVisibility(View.INVISIBLE);
 
         heightEditText = (EditText) findViewById(R.id.heightEditText);
         heightEditText.addTextChangedListener(heightEditTextWatcher);
@@ -117,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.radioMale);
         Img = (ImageView) findViewById(R.id.imageView);
         Img.setVisibility(View.INVISIBLE);
+
+        webView = (WebView) findViewById(R.id.webview);
+
 
     }
     private void calculate() {
@@ -315,5 +333,48 @@ public class MainActivity extends AppCompatActivity {
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
+    private void draw_chart() {
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        String htmlData = "<html>"
+                +"  <head>"
+                +"    <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>"
+                +"    <script type=\"text/javascript\">"
+                +"      google.charts.load('current', {'packages':['corechart']});"
+                +"      google.charts.setOnLoadCallback(drawChart);"
+
+                +"      function drawChart() {"
+                +"         var data = google.visualization.arrayToDataTable(["
+                +"          ['Week', 'Weight(kg)'],"
+                +"          ['1',  120],"
+                +"          ['2',  115],"
+                +"          ['3',  113],"
+                +"          ['4', 100],"
+                +"          ['5', 102],"
+                +"          ['6', 97],"
+                +"          ['7', 93],"
+                +"          ['8', 93],"
+                +"          ['9',  90]"
+                +"        ]);"
+
+                +"        var options = {"
+                +"          title: 'Weight loss chart (weekly)',"
+                +"          curveType: 'function',"
+                +"          legend: { position: 'bottom' }"
+                +"        };"
+
+                +"        var chart = new google.visualization.LineChart(document.getElementById('chart'));"
+
+                +"        chart.draw(data, options);"
+                +"      }"
+                +"    </script>"
+                +"  </head>"
+                +"  <body>"
+                +"    <div id=\"chart\" style=\"width: 390px; height: 380px;\"></div>"
+                +"  </body>"
+                +"</html>";
+        webView.loadData(htmlData, "text/html", "UTF-8");
     }
 }

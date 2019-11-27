@@ -16,6 +16,10 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/Miffin" />
     <item
+        android:id="@+id/navigation_stats"
+        android:icon="@drawable/ic_graph"
+        android:title="@string/stats" />
+    <item
         android:id="@+id/navigation_quiz"
         android:icon="@drawable/ic_quiz"
         android:title="@string/Quiz" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BottomNav</string>
+    <string name="app_name">Health app</string>
     <string name="title_home">Welcome</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -42,4 +42,5 @@
     <string name="cancel">Go to main</string>
     <string name="finished">You finished the quiz!</string>
     <string name="congratz">Congratulations!</string>
+    <string name="stats">Statistics</string>
 </resources>
